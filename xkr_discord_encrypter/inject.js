@@ -387,7 +387,7 @@ function decryptMessages() {
 					} else if(decryptedWord.includes("https")) {
 						decryptedWord= '<a href="' + decryptedWord + '">' + decryptedWord +'</a><br/><img alt="" src="'+ decryptedWord +'" style="max-height: 500px; max-width: 600px;">';
 					}
-					decrypted+=decryptedWord
+					decrypted+= " " + decryptedWord
 
 				}
 				
