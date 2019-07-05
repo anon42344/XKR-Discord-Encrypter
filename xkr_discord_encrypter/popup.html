@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+ <script src="sha256.js"></script>
+
+    <style>
+      button, input {
+       background-color: rgb(255, 255, 255);
+    border: 1px solid #909090;
+      }
+	   body {
+    height: 219px;
+	width: 300px;
+        outline: none;
+		
+		
+      }
+	
+.popuplogo {
+    width: 42px;
+margin-bottom: 30px;
+    margin: auto;
+  display: -webkit-box;
+    /*  border-radius: 100%;
+	  background-color: black;
+    padding: 5px;
+     */
+}
+
+.popup_item {
+    height: 25px;
+    width: 90%;
+    margin: auto;
+    display: -webkit-box;
+}
+
+form {
+    margin-top: 17px;
+}
+
+#info {
+    position: absolute;
+margin-top: -43px;
+    margin-left: 13px;
+    color: grey;
+	font-size:10px;
+}
+
+.popup-button {
+    display: inline;
+    margin-left: 14px;
+    color: black;
+    font-weight: 500;
+}
+	  
+    </style>
+  </head>
+  <body id="xkrpopup" data-injected="false">
+
+
+<div style="width:100%;"><img src="images/logo.png" class="popuplogo"></div>
+  <form>
+  
+	
+
+  <p  class="popup_item"> Enter password for this server* </p>
+    <input type="text" class="popup_item" id="server-key">
+<br/>
+  <p  class="popup_item"> Enter password for this channel</p>
+    <input type="text"  class="popup_item" id="channel-key">
+	<br/>
+	<br/>
+   <a href="#" id="setkeys"  class="popup_item popup-button">Set keys</a>
+      <a href="#" id="removekeys"  class="popup_item popup-button">Remove keys</a>
+
+	<div id="info"> </div>	
+  </form>
+  
+    <script src="popup.js"></script>
+	
+  </body>
+  
+  
+</html>
