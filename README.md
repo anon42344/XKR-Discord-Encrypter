@@ -10,6 +10,7 @@ Upcomming updates:<br/>
 <li>Better support for emojis.</li>
 <li>Another, more standard hash library will be used.</li>
 <li>Expiring messages. </li>
+<li>Support for firefox and tor. </li>
 <li>Support for drag and drop (maybe).</li>
 </ul>
 
