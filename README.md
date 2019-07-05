@@ -13,4 +13,4 @@ Upcomming updates:<br/>
 <li>Support for drag and drop (maybe).</li>
 </ul>
 
-Disclaimer: This is work in progress. Security will improve. More functionality will be added. You are responsible of how you use this tool. Use at your own risk. 
+Disclaimer: This is work in progress. Security will improve. More functionality will be added. You are responsible for how you use this tool.
