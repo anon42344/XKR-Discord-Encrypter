@@ -152,8 +152,8 @@ removekeys
 function removekeys() {
 	
 	try {
-		window.localStorage.removeItem(serverurl)		
-		window.localStorage.removeItem(channelurl);
+		removeChrome(serverurl)		
+		removeChrome(channelurl);
 		document.getElementById("info").innerHTML = "Done. Your keys has been deleted.";
 	} catch(error) {
 		alert("Error. Could not remove keys");

@@ -1,7 +1,7 @@
 {
   "name": "XKR discord encrypter",
   "version": "1.0",
-  "description": "Build an Extension!",
+  "description": "",
   "permissions": ["activeTab", "declarativeContent", "storage"],
   "options_page": "options.html",
   "web_accessible_resources": ["data/*.json"],

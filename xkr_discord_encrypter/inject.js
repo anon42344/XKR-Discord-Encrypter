@@ -177,6 +177,70 @@ class Sha256 {
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
 
+	
+				var replacementarr={};
+				
+			function loadEmojis() {
+				chrome.storage.local.get(null,function (obj){
+					var mydata = obj;
+					replacementarr =  obj["emojidata"];
+					//console.log(replacementarr);
+					replacementarr[":joy:"] = '<img src="/assets/cae9e3b02af6e987442df2953de026fc.svg" aria-label=":joy:" alt=":joy:" draggable="false" class="emoji jumboable">';
+					replacementarr[":frowning2:"] = '<img src="/assets/b61c4e14e90e796e36f0d10792fcc505.svg" aria-label=":frowning2:" alt=":frowning2:" draggable="false" class="emoji jumboable">';
+					replacementarr[":money_mouth:"] = '<img src="/assets/5cdb67d23b259628f475e663ef9907e7.svg" aria-label=":money_mouth:" alt=":money_mouth:" draggable="false" class="emoji jumboable">';
+					replacementarr[":smile:"] = '<img src="/assets/f0835a46b501ae0a182874b003fdbb65.svg" aria-label=":smile:" alt=":smile:" draggable="false" class="emoji jumboable">';
+					replacementarr[":sunglasses:"] = '<img src="/assets/d0df7bf4acd843defa4e417cf767a574.svg" aria-label=":sunglasses:" alt=":sunglasses:" draggable="false" class="emoji jumboable">';
+					replacementarr[":heart_eyes:"] = '<img src="/assets/7e4f6dcf32845bfa865cf17491faf867.svg" aria-label=":heart_eyes:" alt=":heart_eyes:" draggable="false" class="emoji jumboable">';
+					replacementarr[":heart:"] = '<img src="/assets/dcbf6274f0ce0f393d064a72db2c8913.svg" aria-label=":heart:" alt=":heart:" draggable="false" class="emoji jumboable">';
+					replacementarr[":sob:"] = '<img src="/assets/4dc13fd52f691020a1308c5b6cbc6f49.svg" aria-label=":sob:" alt=":sob:" draggable="false" class="emoji jumboable">';
+					replacementarr[":thumbsup:"] = '<img src="/assets/2af915882260fdb89538d1610e1d9baa.svg" aria-label=":thumbsup:" alt=":thumbsup:" draggable="false" class="emoji jumboable">';
+					replacementarr[":ok_hand:"] = '<img src="/assets/b6f700d4bc253abdb5ad576917b756d8.svg" aria-label=":ok_hand:" alt=":ok_hand:" draggable="false" class="emoji jumboable">';
+					replacementarr[":ingves_guld:"] = '<img aria-label=":ingves_guld:" src="https://cdn.discordapp.com/emojis/586594745711591425.png?v=1" alt=":ingves_guld:" draggable="false" class="emoji jumboable">';
+					replacementarr[":ingves_concerned:"] = '<img aria-label=":ingves_concerned:" src="https://cdn.discordapp.com/emojis/586595195701821475.png?v=1" alt=":ingves_concerned:" draggable="false" class="emoji jumboable">';
+					replacementarr[":cry:"] = '<img src="/assets/2a6e66e7de157c4051fb7abf7d8b0063.svg" aria-label=":cry:" alt=":cry:" draggable="false" class="emoji jumboable">';
+					replacementarr[":thinking:"] = '<img src="/assets/53ef346458017da2062aca5c7955946b.svg" aria-label=":thinking:" alt=":thinking:" draggable="false" class="emoji jumboable">';
+					replacementarr[":broken_heart:"] = '<img src="/assets/8fee3f6705505729fea8c7379934d794.svg" aria-label=":broken_heart:" alt=":broken_heart:" draggable="false" class="emoji jumboable">';
+					replacementarr[":grimacing:"] = '<img src="/assets/be0923fd964bff1a6ea77c14fe227a63.svg" aria-label=":grimacing:" alt=":grimacing:" draggable="false" class="emoji jumboable">';
+					replacementarr[":pensive:"] = '<img src="/assets/f1f76882104c8724124954b6edfed6d4.svg" aria-label=":pensive:" alt=":pensive:" draggable="false" class="emoji jumboable">';
+					replacementarr[":money_with_wings:"] = '<img src="/assets/630828f0eaa647bf465b3b903b0dbc5f.svg" aria-label=":money_with_wings:" alt=":money_with_wings:" draggable="false" class="emoji jumboable">';
+					replacementarr[":moneybag:"] = '<img src="/assets/ccebe0b729ff7530c5e37dbbd9f9938c.svg" aria-label=":moneybag:" alt=":moneybag:" draggable="false" class="emoji jumboable">';
+					replacementarr[":clown:"] = '<img src="/assets/1beee7912bb5016975747a3086794957.svg" aria-label=":clown:" alt=":clown:" draggable="false" class="emoji jumboable">';
+					replacementarr[":smiley:"] = '<img src="/assets/b731b88b6459090c02b8d1e31a552c5a.svg" aria-label=":smiley:" alt=":smiley:" draggable="false" class="emoji jumboable">';
+					replacementarr[":scream:"] = '<img src="/assets/9bd8b85559466379744360f8c9841f39.svg" aria-label=":scream:" alt=":scream:" draggable="false" class="emoji jumboable">';
+					replacementarr[":wave:"] = '<img src="/assets/593c4a3437fbb5b89fbb148f7b96424d.svg" aria-label=":wave:" alt=":wave:" draggable="false" class="emoji jumboable">';
+				});
+			}
+			
+			loadEmojis();
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
+
+
+function saveChrome(key, value){
+	var storage = chrome.storage.local;
+	var v1 = key;
+	storage.set({
+	  [v1]: value // Will evaluate v1 as property name
+	});
+	
+	
+}
+
+function removeChrome(key){
+	chrome.storage.local.remove(key, function(){});
+}
+
+function loadChrome(key, f){
+	var returnvalue;
+	chrome.storage.local.get(null,function (obj){
+		var mydata = obj;
+		returnvalue = obj[key];
+		f(returnvalue);
+		
+	});
+	return returnvalue;
+}
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
 
  
 var passphrase ="";
@@ -199,12 +263,9 @@ chrome.storage.local.get(null,function (obj){
 	if(serverkey == undefined) serverkey="";
 	if(channelkey == undefined) channelkey="";
 	var channelname = (document.getElementsByClassName("title-29uC1r")[0]).innerText;
-	passphrase = Sha256.hash(channelname + url + serverkey + channelkey);
+	var retardedClientSideSalt = "9AK0Q4Ga0g";
+	passphrase = Sha256.hash(channelname + url + serverkey + channelkey + retardedClientSideSalt);
 	passphrase = Sha256.hash(serverkey + channelkey);
-
-	console.log(passphrase);
-	console.log(serverkey);
-	console.log(channelkey);
 	decryptMessages(); 
 
 });
@@ -286,6 +347,20 @@ document.addEventListener('keydown', function(event){
 	  }
 });
 
+function myCallback(url, answer) {
+    alert(url + ': ' + answer);
+}
+
+function IsValidImageUrl(url, callback) {
+    var img = new Image();
+    img.onerror = function() { callback(url, false); }
+    img.onload =  function() { callback(url, true); }
+    img.src = url
+}
+
+
+
+
 function decryptMessages() {		
 	var encryptedmessages = document.getElementsByClassName("markup-2BOw-j");
 		
@@ -307,40 +382,34 @@ function decryptMessages() {
 			decrypted = "[could not be decrypted]";
 			}	
 			
-			if (decrypted.split(":").length > 1) {
-				decrypted = decrypted.replace(":joy:",'<img src="/assets/cae9e3b02af6e987442df2953de026fc.svg" aria-label=":joy:" alt=":joy:" draggable="false" class="emoji jumboable">');
-				decrypted = decrypted.replace(":frowning2:",'<img src="/assets/b61c4e14e90e796e36f0d10792fcc505.svg" aria-label=":frowning2:" alt=":frowning2:" draggable="false" class="emoji jumboable">');
-				decrypted = decrypted.replace(":money_mouth:",'<img src="/assets/5cdb67d23b259628f475e663ef9907e7.svg" aria-label=":money_mouth:" alt=":money_mouth:" draggable="false" class="emoji jumboable">');
-				decrypted = decrypted.replace(":smile:",'<img src="/assets/f0835a46b501ae0a182874b003fdbb65.svg" aria-label=":smile:" alt=":smile:" draggable="false" class="emoji jumboable">');
-				decrypted = decrypted.replace(":sunglasses:",'<img src="/assets/d0df7bf4acd843defa4e417cf767a574.svg" aria-label=":sunglasses:" alt=":sunglasses:" draggable="false" class="emoji jumboable">');
-				decrypted = decrypted.replace(":heart_eyes:",'<img src="/assets/7e4f6dcf32845bfa865cf17491faf867.svg" aria-label=":heart_eyes:" alt=":heart_eyes:" draggable="false" class="emoji jumboable">');			
-				decrypted = decrypted.replace(":heart:",'<img src="/assets/dcbf6274f0ce0f393d064a72db2c8913.svg" aria-label=":heart:" alt=":heart:" draggable="false" class="emoji jumboable">');			
-				decrypted = decrypted.replace(":sob:",'<img src="/assets/4dc13fd52f691020a1308c5b6cbc6f49.svg" aria-label=":sob:" alt=":sob:" draggable="false" class="emoji jumboable">');			
-				decrypted = decrypted.replace(":thumbsup:",'<img src="/assets/2af915882260fdb89538d1610e1d9baa.svg" aria-label=":thumbsup:" alt=":thumbsup:" draggable="false" class="emoji jumboable">');	
-				decrypted = decrypted.replace(":ok_hand:",'<img src="/assets/b6f700d4bc253abdb5ad576917b756d8.svg" aria-label=":ok_hand:" alt=":ok_hand:" draggable="false" class="emoji jumboable">');			
-				decrypted = decrypted.replace(":ingves_guld:",'<img aria-label=":ingves_guld:" src="https://cdn.discordapp.com/emojis/586594745711591425.png?v=1" alt=":ingves_guld:" draggable="false" class="emoji jumboable">');		
-				decrypted = decrypted.replace(":ingves_concerned:",'<img aria-label=":ingves_concerned:" src="https://cdn.discordapp.com/emojis/586595195701821475.png?v=1" alt=":ingves_concerned:" draggable="false" class="emoji jumboable">');		
-				decrypted = decrypted.replace(":ingves_concerned:",'<img aria-label=":ingves_concerned:" src="https://cdn.discordapp.com/emojis/586595195701821475.png?v=1" alt=":ingves_concerned:" draggable="false" class="emoji jumboable">');		
-				decrypted = decrypted.replace(":cry:",'<img src="/assets/2a6e66e7de157c4051fb7abf7d8b0063.svg" aria-label=":cry:" alt=":cry:" draggable="false" class="emoji jumboable">');		
-				decrypted = decrypted.replace(":thinking:",' <img src="/assets/53ef346458017da2062aca5c7955946b.svg" aria-label=":thinking:" alt=":thinking:" draggable="false" class="emoji jumboable">');			
-				decrypted = decrypted.replace(":broken_heart:",'<img src="/assets/8fee3f6705505729fea8c7379934d794.svg" aria-label=":broken_heart:" alt=":broken_heart:" draggable="false" class="emoji jumboable">');		
-				decrypted = decrypted.replace(":grimacing:",'<img src="/assets/be0923fd964bff1a6ea77c14fe227a63.svg" aria-label=":grimacing:" alt=":grimacing:" draggable="false" class="emoji jumboable">');		
-				decrypted = decrypted.replace(":pensive:",'<img src="/assets/f1f76882104c8724124954b6edfed6d4.svg" aria-label=":pensive:" alt=":pensive:" draggable="false" class="emoji jumboable">');		
-				decrypted = decrypted.replace(":money_with_wings:",'<img src="/assets/630828f0eaa647bf465b3b903b0dbc5f.svg" aria-label=":money_with_wings:" alt=":money_with_wings:" draggable="false" class="emoji jumboable">');		
-				decrypted = decrypted.replace(":moneybag:",'<img src="/assets/ccebe0b729ff7530c5e37dbbd9f9938c.svg" aria-label=":moneybag:" alt=":moneybag:" draggable="false" class="emoji jumboable">');
-				decrypted = decrypted.replace(":clown:",'<img src="/assets/1beee7912bb5016975747a3086794957.svg" aria-label=":clown:" alt=":clown:" draggable="false" class="emoji jumboable">');
-				decrypted = decrypted.replace(":smiley:",'<img src="/assets/b731b88b6459090c02b8d1e31a552c5a.svg" aria-label=":smiley:" alt=":smiley:" draggable="false" class="emoji jumboable">');
-				decrypted = decrypted.replace(":scream:",'<img src="/assets/9bd8b85559466379744360f8c9841f39.svg" aria-label=":scream:" alt=":scream:" draggable="false" class="emoji jumboable">');
-				decrypted = decrypted.replace(":wave:",'<img src="/assets/593c4a3437fbb5b89fbb148f7b96424d.svg" aria-label=":wave:" alt=":wave:" draggable="false" class="emoji jumboable">');
-				decrypted = decrypted.replace(":sleepy:",'<img src="/assets/e301ba4fec009e9442b7016329d605e7.svg" aria-label=":sleepy:" alt=":sleepy:" draggable="false" class="emoji jumboable">');
-				decrypted = decrypted.replace(":tada:",'<img src="/assets/612f3fc9dedfd368820b55c4cf259c07.svg" aria-label=":tada:" alt=":tada:" draggable="false" class="emoji jumboable">');
-				decrypted = decrypted.replace(":punch:",'<img src="/assets/fadb5208b3cfe613768e0ea7a8d1156c.svg" aria-label=":punch:" alt=":punch:" draggable="false" class="emoji jumboable">');
-				decrypted = decrypted.replace(":nose:",'<img src="/assets/dbdf73851d673c57783bb673cd92c2ac.svg" aria-label=":nose:" alt=":nose:" draggable="false" class="emoji jumboable">');
-				decrypted = decrypted.replace(":frog:",'<img src="/assets/2dc62d269672004b581d3e056151c938.svg" aria-label=":frog:" alt=":frog:" draggable="false" class="emoji jumboable">');
-				decrypted = decrypted.replace(":weary:",'<img src="/assets/2e1d6b723adec95eaa2a500141cf136d.svg" aria-label=":weary:" alt=":weary:" draggable="false" class="emoji jumboable">');
-				decrypted = decrypted.replace(":nerd:",'<img src="/assets/e694b29603bee9f93dea4cad64502a38.svg" aria-label=":nerd:" alt=":nerd:" draggable="false" class="emoji jumboable">');
+			
+			if(decrypted.includes("https")) {
+				decrypted = decrypted.replace("https://", " https://");
+				decrypted = decrypted.replace("= https://", "=https://");
 
-			 }
+				var decryptedWords = decrypted.split(" ");
+				decrypted = "";
+				for (var b = 0; b < decryptedWords.length; b++) {
+
+					decryptedWord=decryptedWords[b];
+					console.log(decryptedWord);
+
+					if(decryptedWord.includes("https")) {
+						
+						//IsValidImageUrl(decryptedWord, myCallback);
+							decryptedWord= '<img alt="" src="'+ decryptedWord +'" style="width: 99%; max-width:700px;">';
+							
+					}
+					decrypted+=decryptedWord
+
+				}
+				
+			}
+			if (decrypted.split(":").length > 1) {
+				for (var key in replacementarr){
+					decrypted = decrypted.replace(key, replacementarr[key]);
+				}
+            }  
 			 
 			encryptedmessages[i].innerHTML = decrypted;
 			
@@ -348,11 +417,11 @@ function decryptMessages() {
 			  //console.error(error);
 			  encryptedmessages[i].innerHTML = "[could not be decrypted]";
 			}
-		}
+		}  
 	}
 }
 
-
+ 
 /*
 
 Main loop
@@ -367,18 +436,33 @@ function intervalfunc() {
 counter = (counter+1) % 1000000;
 
 
+setPassphrase(); // (and decrypt)
 
-setPassphrase();
 
-
+if (counter % 1000 == 0) { //learn emojis
+			
+	var allemojis = document.getElementsByTagName("img");
+	
+	for (var e=0; e < allemojis.length; e++) { 
+		var emojiToAdd = allemojis[e];
+		if (emojiToAdd.getAttribute("aria-label") != null && emojiToAdd.getAttribute("aria-label")[0] == ":") {
+			replacementarr[emojiToAdd.getAttribute("aria-label")] = emojiToAdd.outerHTML;
+		}
+	}
+			
+	saveChrome("emojidata",replacementarr);		
+	loadEmojis();			
+}
 
 
 if(send == true) {
 	for (var i= 0 ; i < textareaarray.length; i++) {
 		var str = textareaarray[i].value;
 		str = "[Encrypted, press enter]";
+				str = passphrase;
+
 		textareaarray[i].value = str;
-		decryptMessages();
+		//decryptMessages();
 	}
 	send = false;
 } 
