@@ -4,4 +4,4 @@ Go to chrome://extensions, select "Load unpacked" and select the directory with 
 Enter the password for your server, and add optional password for your channel. Press § (usually under esc button) to encrypt a message.
 
 
-En del av projektet <a href="https://kryptokrona.se"> kryptokrona </a>.
+Part of <a href="https://kryptokrona.se"> kryptokrona </a>.
