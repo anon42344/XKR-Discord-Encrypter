@@ -8,7 +8,9 @@ Part of <a href="https://kryptokrona.se"> kryptokrona </a>.
 Disclaimer: This is work in progress. Security will improve. More functionality will be added. Use at your own risk.
 
 Upcomming updates:<br/>
-Better support for emojis.<br/>
-Another, more standard hash library will be used. <br/>
-Expiring messages. <br/>
-Support for drag and drop (maybe). <br/>
+<ul> 
+<li>Better support for emojis.</li>
+<li>Another, more standard hash library will be used.</li>
+<li>Expiring messages. </li>
+<li>Support for drag and drop (maybe).</li>
+</ul>
