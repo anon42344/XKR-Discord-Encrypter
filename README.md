@@ -5,8 +5,6 @@ Enter the password for your server, and add optional password for your channel. 
 
 Part of <a href="https://kryptokrona.se"> kryptokrona </a>.
 
-Disclaimer: This is work in progress. Security will improve. More functionality will be added. Use at your own risk.
-
 Upcomming updates:<br/>
 <ul> 
 <li>Better support for emojis.</li>
@@ -14,3 +12,5 @@ Upcomming updates:<br/>
 <li>Expiring messages. </li>
 <li>Support for drag and drop (maybe).</li>
 </ul>
+
+Disclaimer: This is work in progress. Security will improve. More functionality will be added. You are responsible of how you use this tool. Use at your own risk. 
