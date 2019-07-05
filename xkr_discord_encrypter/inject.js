@@ -385,7 +385,7 @@ function decryptMessages() {
 						decryptedWord= '<a href="' + decryptedWord + '">' + decryptedWord +'</a><br/><iframe src="https://www.youtube.com/embed/' + watchcode + '" style="width: 99%; max-width:700px; height:400px;">';
 						decryptedWord.replace('zpXOKSLWJuM', watchcode);
 					} else if(decryptedWord.includes("https")) {
-						decryptedWord= '<a href="' + decryptedWord + '">' + decryptedWord +'</a><br/><img alt="" src="'+ decryptedWord +'" style="width: 99%; max-width:600px; max-width:300px;">';
+						decryptedWord= '<a href="' + decryptedWord + '">' + decryptedWord +'</a><br/><img alt="" src="'+ decryptedWord +'" style="max-height: 500px; max-width: 600px;">';
 					}
 					decrypted+=decryptedWord
 
