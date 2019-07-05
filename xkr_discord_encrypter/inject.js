@@ -183,8 +183,9 @@ class Sha256 {
 			function loadEmojis() {
 				chrome.storage.local.get(null,function (obj){
 					var mydata = obj;
-					replacementarr =  obj["emojidata"];
-					//console.log(replacementarr);
+					if(obj["emojidata"] != undefined) {
+						replacementarr =  obj["emojidata"];
+					}
 					replacementarr[":joy:"] = '<img src="/assets/cae9e3b02af6e987442df2953de026fc.svg" aria-label=":joy:" alt=":joy:" draggable="false" class="emoji jumboable">';
 					replacementarr[":frowning2:"] = '<img src="/assets/b61c4e14e90e796e36f0d10792fcc505.svg" aria-label=":frowning2:" alt=":frowning2:" draggable="false" class="emoji jumboable">';
 					replacementarr[":money_mouth:"] = '<img src="/assets/5cdb67d23b259628f475e663ef9907e7.svg" aria-label=":money_mouth:" alt=":money_mouth:" draggable="false" class="emoji jumboable">';
@@ -208,6 +209,8 @@ class Sha256 {
 					replacementarr[":smiley:"] = '<img src="/assets/b731b88b6459090c02b8d1e31a552c5a.svg" aria-label=":smiley:" alt=":smiley:" draggable="false" class="emoji jumboable">';
 					replacementarr[":scream:"] = '<img src="/assets/9bd8b85559466379744360f8c9841f39.svg" aria-label=":scream:" alt=":scream:" draggable="false" class="emoji jumboable">';
 					replacementarr[":wave:"] = '<img src="/assets/593c4a3437fbb5b89fbb148f7b96424d.svg" aria-label=":wave:" alt=":wave:" draggable="false" class="emoji jumboable">';
+					
+					
 				});
 			}
 			
@@ -263,9 +266,10 @@ chrome.storage.local.get(null,function (obj){
 	if(serverkey == undefined) serverkey="";
 	if(channelkey == undefined) channelkey="";
 	var channelname = (document.getElementsByClassName("title-29uC1r")[0]).innerText;
-	var retardedClientSideSalt = "9AK0Q4Ga0g";
+	var retardedClientSideSalt = "9AK0Q4Ga0o";
 	passphrase = Sha256.hash(channelname + url + serverkey + channelkey + retardedClientSideSalt);
 	//passphrase = Sha256.hash(serverkey + channelkey);
+	//console.log(channelname);
 	decryptMessages(); 
 
 });
@@ -316,13 +320,6 @@ d[k>>>24]^e[n>>>16&255]^j[g>>>8&255]^l[h&255]^c[p++],n=d[n>>>24]^e[g>>>16&255]^j
 
 
 /* CRYPTO LIBRARIES END */
-
-
-
-
-
-
-
 // Get the input field
 var textareaarray = document.getElementsByTagName("textarea");
 var formsarray = document.getElementsByTagName("form");
@@ -358,47 +355,37 @@ function IsValidImageUrl(url, callback) {
     img.src = url
 }
 
-
-
-
 function decryptMessages() {		
 	var encryptedmessages = document.getElementsByClassName("markup-2BOw-j");
-		
-
-
-	for (var i=encryptedmessages.length-1; i >= 0 ; i--) {
-		
+	for (var i=encryptedmessages.length-1; i >= 0 ; i--) {	
 		var encrypted = encryptedmessages[i].innerHTML;
 		if(encrypted[0] == "§") {
 			encrypted = encrypted.substring(1);
 			encrypted = encrypted.substring(0, encrypted.length - 1); 
 			
 			try {
-			var decrypted = CryptoJS.AES.decrypt(encrypted, passphrase);
-			decrypted = decrypted.toString(CryptoJS.enc.Utf8); // + "<span style='font-size:8px;'> Decrypted </span>"
-			
+				var decrypted = CryptoJS.AES.decrypt(encrypted, passphrase);
+				decrypted = decrypted.toString(CryptoJS.enc.Utf8); // + "<span style='font-size:8px;'> Decrypted </span>"
 			//console.log(i+ " {"+ decrypted + "}" + decrypted.length);
 			if(decrypted.length < 1) {
-			decrypted = "[could not be decrypted]";
+				decrypted = "[could not be decrypted]";
 			}	
 			
 			
 			if(decrypted.includes("https")) {
 				decrypted = decrypted.replace("https://", " https://");
 				decrypted = decrypted.replace("= https://", "=https://");
-
 				var decryptedWords = decrypted.split(" ");
 				decrypted = "";
 				for (var b = 0; b < decryptedWords.length; b++) {
-
 					decryptedWord=decryptedWords[b];
 					console.log(decryptedWord);
-
-					if(decryptedWord.includes("https")) {
-						
-						//IsValidImageUrl(decryptedWord, myCallback);
-							decryptedWord= '<img alt="" src="'+ decryptedWord +'" style="width: 99%; max-width:700px;">';
-							
+					if(decryptedWord.includes("youtube.com/watch")) {
+						var watchcode = decryptedWord.split("?v=")[1];
+						decryptedWord= '<a href="' + decryptedWord + '">' + decryptedWord +'</a><br/><iframe src="https://www.youtube.com/embed/' + watchcode + '" style="width: 99%; max-width:700px; height:400px;">';
+						decryptedWord.replace('zpXOKSLWJuM', watchcode);
+					} else if(decryptedWord.includes("https")) {
+						decryptedWord= '<a href="' + decryptedWord + '">' + decryptedWord +'</a><br/><img alt="" src="'+ decryptedWord +'" style="width: 99%; max-width:600px; max-width:300px;">';
 					}
 					decrypted+=decryptedWord
 
@@ -459,7 +446,7 @@ if(send == true) {
 	for (var i= 0 ; i < textareaarray.length; i++) {
 		var str = textareaarray[i].value;
 		str = "[Encrypted, press enter]";
-				str = passphrase;
+		//		str = passphrase;
 
 		textareaarray[i].value = str;
 		//decryptMessages();

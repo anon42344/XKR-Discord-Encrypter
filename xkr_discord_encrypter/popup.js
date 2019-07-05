@@ -115,11 +115,11 @@ Stores this in local storage.
 ****************************/
 
 function setKeys() {
-	var serverkey = document.getElementById("server-key").value;
+	var serverkey = (document.getElementById("server-key").value).replace(/\s/g, '');
 	if(serverkey.length > 5) {
 		saveChrome(serverurl, serverkey);
 
-		var channelkey = document.getElementById("channel-key").value;
+		var channelkey = (document.getElementById("channel-key").value).replace(/\s/g, '');
 		//alert(loadChrome(serverurl) + " " + serverkey);
 		//loadChrome(serverurl);
 		if(channelkey != "") {
