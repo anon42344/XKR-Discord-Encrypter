@@ -265,7 +265,7 @@ chrome.storage.local.get(null,function (obj){
 	var channelname = (document.getElementsByClassName("title-29uC1r")[0]).innerText;
 	var retardedClientSideSalt = "9AK0Q4Ga0g";
 	passphrase = Sha256.hash(channelname + url + serverkey + channelkey + retardedClientSideSalt);
-	passphrase = Sha256.hash(serverkey + channelkey);
+	//passphrase = Sha256.hash(serverkey + channelkey);
 	decryptMessages(); 
 
 });
