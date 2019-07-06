@@ -82,7 +82,9 @@ function loadKeys () {
 				chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
 					var path = chrome.extension.getURL('inject.js');
 										var hasBeenInjected;
-	
+					
+					
+					
 					//check if tab already has been injected
 					code = "var returnvalue; if(document.getElementsByTagName('body')[0].getAttribute('data-injected') == 'true') { returnvalue='true'; } else {returnvalue='false';} returnvalue; ";
 					chrome.tabs.executeScript(tabs[0].id, {code: code}, function(result) {
@@ -142,6 +144,12 @@ document.getElementById("setkeys").addEventListener("click", function(event) {
 
 
 
+	chrome.storage.local.get(null,function (obj){
+	if (obj["vapormode"] == undefined) {
+		saveChrome("vapormode", "true");
+	} 
+
+	});
 
 
 /****************************

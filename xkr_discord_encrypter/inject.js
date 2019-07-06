@@ -246,26 +246,96 @@ function loadChrome(key, f){
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
 
 			
-var styles = `
+var vaporStyle = `
+
+
     /*..theme-dark .markup-2BOw-j { color: #bebebe; }
 	
 	containerCozyBounded-1rKFAn {  opacity:0.4;}*/
+	
+	
+	//META{"name":"Chloe","description":"~Chloe theme~ Please use the support server listed below if you need any help.","author":"Satoru","version":"1.1.1","website":"http://discord.gg/fjvwb95"}*//{}
+
+@import url('https://satoru8.github.io/Collection/Base.css');
+@import url('https://satoru8.github.io/Addons/GlowStatus.css');
+
+:root { 
+	--light: rgba(0, 0, 0, .0); 		/* Overall brightness. 1= black, 0 = transparent */
+	--userlight:rgba(0, 0, 0, 0.2) ;		/* Brightness for the userpopouts */
+	--homeIcon: url('https://i.imgur.com/CqAFpyP.jpg') ;
+
+
+	--mc: rgba(44, 104, 96, 0.8);		/* Main colour. Larger items, backgrounds. */
+	--sc: rgba(214, 67, 69, 0.8);		/* Accent/Secondary colour. Borders, notifications & such.  */
+	--bc: rgba(214, 67, 69, 0.8);       /* All borders/box shadows. You should match this to your mc or sc colour. */
+
+	--round: 50%;                          /* Overall Icon roundness */
+	
+	--font: Consolas,Liberation Mono,Menlo,Courier,monospace; /* Discord default - Whitney,Helvetica Neue,Helvetica,Arial,sans-serif  */
+	--fontSize: 14px;
+	--textColour: #fff;
+
+	--block: none;                        /* Show/Hide blocked msgs */
+
+	--sGlow: 5px 2px; /* Blur/Thickness Default: 5px 2px */
+
+    --online: #43b581;
+    --offline: #747f8d;
+    --idle: #faa61a;
+    --stream: #593695;
+    --dnd: #f04747;
+    --invis: #1a36fa;
+}
+
+#app-mount {background: url('https://i.imgur.com/kBuN2PY.jpg') center/cover no-repeat}
+.userPopout-3XzG_A {background: url('http://i.pinimg.com/736x/96/9a/5a/969a5a5c2a430deede193bf5cff0aef4.jpg') center/cover no-repeat}
+
+/*,#app-mount .channels-Ie2l6A 
+#app-mount .wrapper-1Rf91z , .membersWrap-2h-GB4 {
+background-color: #1a1a1d !important;
+}
+
+
+
+#app-mount .channels-Ie2l6A .name-3_Dsmg {
+    color: #fff;
+}*/
+
+.encryptedMessageContainer {
+    background-color: black;
+    border: 1px solid rgb(255, 0, 102);
+	max-width:500px;
+	margin-top:20px;
+	margin-bottom:20px;
+}
+
+.containsImage {
+		max-width:90%;
+background-color: #ffffff00;
+}
 
 `
 
 
-
-
-var styleSheet = document.createElement("style")
-styleSheet.type = "text/css"
-styleSheet.innerText = styles
-document.head.appendChild(styleSheet)
-
-
+function vaporWaveMode() {
+	chrome.storage.local.get(null,function (obj){
+		var mydata = obj;
+		if(obj["vapormode"] != undefined) {
+			if(obj["vapormode"] == "true") {
+				var styleSheet = document.createElement("style");
+				styleSheet.type = "text/css";
+				styleSheet.innerText = vaporStyle;
+				document.head.appendChild(styleSheet);
+			}
+		}
+		
+	});
+}
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
 
- 
+ vaporWaveMode();
+  
 var passphrase ="";
 var stopkey = "§"; 
 var serverchannelkey; //hash of channel and serverkey
@@ -401,8 +471,9 @@ function decryptMessages() {
 				encryptedmessages[i].innerHTML = "[could not be decrypted]";
 			} else {
 			
-			
+			var containsImage = false;
 			if(decrypted.includes("https")) {
+				containsImage = true;
 				decrypted = decrypted.replace("https://", " https://");
 				decrypted = decrypted.replace("= https://", "=https://");
 				var decryptedWords = decrypted.split(" ");
@@ -416,6 +487,7 @@ function decryptMessages() {
 						var watchcode = decryptedWord.split(".com/video/")[1];
 						decryptedWord= '<a href="' + decryptedWord + '">' + decryptedWord +'</a><br/><br/><iframe src="https://www.bitchute.com/embed/' + watchcode + '" style="width: 99%; max-width:700px; height:400px;">';
 					} else if(decryptedWord.includes("https")) {
+						
 						decryptedWord= '<a href="' + decryptedWord + '">' + decryptedWord +'</a><br/><br/><img alt="" src="'+ decryptedWord +'" style="max-height: 600px; max-width: 600px;">';
 					}
 					decrypted+= " " + decryptedWord
@@ -431,9 +503,15 @@ function decryptMessages() {
 			 
 			encryptedmessages[i].innerHTML = decrypted;
 			encryptedmessages[i].style.color = "#fff";
-			(encryptedmessages[i].parentElement.parentElement.parentElement.parentElement).style.backgroundColor = "#2f3136";
-			(encryptedmessages[i].parentElement.parentElement.parentElement.parentElement).style.borderLeft = "1px solid #36393f";
-
+			//encryptedmessages[i].style.backgroundColor="black";
+			//(encryptedmessages[i].parentElement.parentElement.parentElement.parentElement).style.backgroundColor = "rgba(0, 0, 0, 0.24)";
+			var parentcontainer = (encryptedmessages[i].parentElement.parentElement.parentElement.parentElement);
+			//parentcontainer.style.borderLeft = "1px solid #36393f";
+			parentcontainer.className += " encryptedMessageContainer";
+			if(containsImage) {
+				parentcontainer.className += " containsImage";
+				
+			}
 
 			//encryptedmessages[i].style.color = "white";
 			//encryptedmessages[i].style.fontWeight = "600";

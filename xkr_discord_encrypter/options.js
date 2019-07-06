@@ -12,10 +12,41 @@ code.google.com/p/crypto-js
 code.google.com/p/crypto-js/wiki/License
 */
 
+
+	
+function saveChrome(key, value){
+	var storage = chrome.storage.local;
+	var v1 = key;
+	storage.set({
+	  [v1]: value // Will evaluate v1 as property name
+	});
+}
+
+function loadChrome(key, f){
+	var returnvalue;
+	chrome.storage.local.get(null,function (obj){
+		var mydata = obj;
+		returnvalue = obj[key];
+		f(returnvalue);
+	});
+	return returnvalue;
+}
+
+
+
 let page = document.body;
 
 window.onload = function() {
 
+	chrome.storage.local.get(null,function (obj){
+		if(obj["vapormode"] == "true") {
+			document.getElementById("vapormode").checked = true;
+		} else {
+			document.getElementById("vapormode").checked = false;
+			
+		}
+	});
+/*
 var generatekeybuttons = page.getElementsByClassName("generatekey");
 
 document.getElementById("generatekey").addEventListener("click", function(event) {	
@@ -41,11 +72,24 @@ document.getElementById("showadvanced").addEventListener("click", function(event
 	document.getElementById("showadvanced").style.display = "none";	
 	
 	
+
+
+
 });
-
-
-}
+	*/
 	
+
+
+	
+document.getElementById("vapormode").addEventListener('change', function(event) {
+  if (event.target.checked) {
+	saveChrome("vapormode", "true");
+    console.log('checked');
+  } else {
+	saveChrome("vapormode", "false");
+    console.log('not checked');
+  }
+});
 	
 function makeid(length) {
    var result           = '';
@@ -55,4 +99,5 @@ function makeid(length) {
       result += characters.charAt(Math.floor(Math.random() * charactersLength));
    }
    return result;
+}
 }
