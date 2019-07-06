@@ -7,6 +7,7 @@ Part of the <a href="https://kryptokrona.se"> kryptokrona project </a>.
 
 Upcomming updates:<br/>
 <ul> 
+<li>Automatic updates.</li>
 <li>Better support for emojis.</li>
 <li>Another, more standard hash library will be used.</li>
 <li>Expiring messages. </li>
