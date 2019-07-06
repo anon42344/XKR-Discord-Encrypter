@@ -1,7 +1,8 @@
 # XKR-Discord-Encrypter
 
 Go to chrome://extensions, select "Load unpacked" and select the directory with files. Navigate in your browser to a discord channel. 
-Enter the password for your server, and add optional password for your channel. Press the icon to activate. After you typed your message, press § (usually under esc button) to encrypt a message.
+Press the icon to activate. After you typed your message, press § (usually under esc button) to encrypt a message. 
+For more security. Enter a password for your server, and add an optional password for your channel. 
 
 Part of the <a href="https://kryptokrona.se"> kryptokrona project </a>.
 
