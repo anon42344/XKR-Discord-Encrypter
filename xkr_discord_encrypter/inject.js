@@ -245,11 +245,32 @@ function loadChrome(key, f){
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
 
+			
+var styles = `
+    /*..theme-dark .markup-2BOw-j { color: #bebebe; }
+	
+	containerCozyBounded-1rKFAn {  opacity:0.4;}*/
+
+`
+
+
+
+
+var styleSheet = document.createElement("style")
+styleSheet.type = "text/css"
+styleSheet.innerText = styles
+document.head.appendChild(styleSheet)
+
+
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
+
  
 var passphrase ="";
 var stopkey = "§"; 
 var serverchannelkey; //hash of channel and serverkey
 var url;
+
 
 
 function setPassphrase() {
@@ -328,7 +349,15 @@ var send=false;
 var lastKeyWasStopKey=false;
 document.addEventListener('keydown', function(event){
 
-	 if (event.key === stopkey && !lastKeyWasStopKey) {
+	  
+	  if ( event.keyCode == 17) {
+		  lastKeyWasStopKey = false;
+	  }
+	 if(lastKeyWasStopKey && !(event.keyCode == 13 || event.keyCode == 8)) {
+		 event.preventDefault();
+	 } else {
+		 
+	 if (event.key === stopkey) {
 		lastKeyWasStopKey = true;  
 		send = true;
 		var tmp = "";
@@ -337,11 +366,11 @@ document.addEventListener('keydown', function(event){
 	
 		
 		str += CryptoJS.AES.encrypt(textToEncrypt, passphrase);
-		console.log(str);
 		textareaarray[0].value = str;
 	  } else {
 		  lastKeyWasStopKey = false;
 	  }
+	 }
 });
 
 function myCallback(url, answer) {
@@ -355,7 +384,8 @@ function IsValidImageUrl(url, callback) {
     img.src = url
 }
 
-function decryptMessages() {		
+function decryptMessages() {	
+	
 	var encryptedmessages = document.getElementsByClassName("markup-2BOw-j");
 	for (var i=encryptedmessages.length-1; i >= 0 ; i--) {	
 		var encrypted = encryptedmessages[i].innerHTML;
@@ -368,8 +398,8 @@ function decryptMessages() {
 				decrypted = decrypted.toString(CryptoJS.enc.Utf8); // + "<span style='font-size:8px;'> Decrypted </span>"
 			//console.log(i+ " {"+ decrypted + "}" + decrypted.length);
 			if(decrypted.length < 1) {
-				decrypted = "[could not be decrypted]";
-			}	
+				encryptedmessages[i].innerHTML = "[could not be decrypted]";
+			} else {
 			
 			
 			if(decrypted.includes("https")) {
@@ -379,13 +409,14 @@ function decryptMessages() {
 				decrypted = "";
 				for (var b = 0; b < decryptedWords.length; b++) {
 					decryptedWord=decryptedWords[b];
-					console.log(decryptedWord);
 					if(decryptedWord.includes("youtube.com/watch")) {
 						var watchcode = decryptedWord.split("?v=")[1];
-						decryptedWord= '<a href="' + decryptedWord + '">' + decryptedWord +'</a><br/><iframe src="https://www.youtube.com/embed/' + watchcode + '" style="width: 99%; max-width:700px; height:400px;">';
-						decryptedWord.replace('zpXOKSLWJuM', watchcode);
+						decryptedWord= '<a  href="' + decryptedWord + '">' + decryptedWord +'</a><br/><br/><iframe src="https://www.youtube.com/embed/' + watchcode + '" style="width: 99%; max-width:700px; height:400px;">';
+					} else if(decryptedWord.includes("bitchute.com/video/")) {
+						var watchcode = decryptedWord.split(".com/video/")[1];
+						decryptedWord= '<a href="' + decryptedWord + '">' + decryptedWord +'</a><br/><br/><iframe src="https://www.bitchute.com/embed/' + watchcode + '" style="width: 99%; max-width:700px; height:400px;">';
 					} else if(decryptedWord.includes("https")) {
-						decryptedWord= '<a href="' + decryptedWord + '">' + decryptedWord +'</a><br/><img alt="" src="'+ decryptedWord +'" style="max-height: 500px; max-width: 600px;">';
+						decryptedWord= '<a href="' + decryptedWord + '">' + decryptedWord +'</a><br/><br/><img alt="" src="'+ decryptedWord +'" style="max-height: 600px; max-width: 600px;">';
 					}
 					decrypted+= " " + decryptedWord
 
@@ -399,12 +430,20 @@ function decryptMessages() {
             }  
 			 
 			encryptedmessages[i].innerHTML = decrypted;
-			
+			encryptedmessages[i].style.color = "#fff";
+			(encryptedmessages[i].parentElement.parentElement.parentElement.parentElement).style.backgroundColor = "#2f3136";
+			(encryptedmessages[i].parentElement.parentElement.parentElement.parentElement).style.borderLeft = "1px solid #36393f";
+
+
+			//encryptedmessages[i].style.color = "white";
+			//encryptedmessages[i].style.fontWeight = "600";
+			//containers[i].border = "1px solid white";
+			}
 			} catch(error) {
-			  //console.error(error);
+			  console.error(error);
 			  encryptedmessages[i].innerHTML = "[could not be decrypted]";
 			}
-		}  
+		} 
 	}
 }
 
@@ -428,6 +467,8 @@ setPassphrase(); // (and decrypt)
 
 if (counter % 1000 == 0) { //learn emojis
 			
+
+
 	var allemojis = document.getElementsByTagName("img");
 	
 	for (var e=0; e < allemojis.length; e++) { 
