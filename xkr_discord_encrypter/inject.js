@@ -296,10 +296,26 @@ background-color: #1a1a1d !important;
 }
  
 
-
+*/
 #app-mount .channels-Ie2l6A .name-3_Dsmg {
     color: #fff;
-}*/
+}
+
+.modeUnread-1zpFdA {
+    background-color: black;
+    border-radius: 10px;
+	margin-top:8px;
+}
+
+
+.modeUnread-1zpFdA:hover {
+    background-color: #ffffff00;
+}
+
+#app-mount .channels-Ie2l6A .wrapper-1ucjTd.modeUnread-1zpFdA .name-3_Dsmg, #app-mount .channels-Ie2l6A .modeUnread-1zpFdA .icon-1_QxNX {
+        color: #fff;
+
+}
 
 .encryptedMessageContainer {
     background-color: black;
