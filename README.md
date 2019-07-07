@@ -3,6 +3,9 @@
 Go to chrome://extensions, turn on "Developer mode" select "Load unpacked" and select the directory with files. Navigate in your browser to a discord channel. Press the icon to activate. After you typed your message, press § (usually under esc button) to encrypt a message. 
 For more security: Enter a password for your server, and add an optional password for your channel. 
 
+Updates
+Run update.ps1 to update the files if you have powershell.
+
 Part of the <a href="https://kryptokrona.se"> kryptokrona project </a>.
 
 Upcomming updates:<br/>
