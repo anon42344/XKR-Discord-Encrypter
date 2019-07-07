@@ -286,7 +286,8 @@ var vaporStyle = `
     --dnd: #f04747;
     --invis: #1a36fa;
 }
-#app-mount {background: url('https://i.imgur.com/6XUcIGl.jpg') center/cover no-repeat}
+
+#app-mount {background: url('https://i.imgur.com/bJmSzmP.jpg') center/cover no-repeat}
 .userPopout-3XzG_A {background: url('http://i.pinimg.com/736x/96/9a/5a/969a5a5c2a430deede193bf5cff0aef4.jpg') center/cover no-repeat}
 
 /*,#app-mount .channels-Ie2l6A 
