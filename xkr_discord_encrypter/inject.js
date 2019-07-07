@@ -302,7 +302,7 @@ background-color: #1a1a1d !important;
 }
 
 .modeUnread-1zpFdA {
-    background-color: black;
+    background-color: #0000007a;
     border-radius: 10px;
 	margin-top:8px;
 }
