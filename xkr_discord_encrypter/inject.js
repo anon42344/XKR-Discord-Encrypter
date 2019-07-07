@@ -301,6 +301,9 @@ background-color: #1a1a1d !important;
     color: #fff;
 }
 
+.theme-dark .topic-TCb_qw {
+    color: #ffffff;
+}
 .modeUnread-1zpFdA {
     background-color: #0000007a;
     border-radius: 10px;
