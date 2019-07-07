@@ -301,6 +301,13 @@ background-color: #1a1a1d !important;
     color: #fff;
 }
 
+#app-mount .chat-3bRxxu .wrapper-3WhCwL,#app-mount  .username-_4ZSMR {
+	    text-shadow: none !important;
+}
+
+#app-mount  .username-_4ZSMR {
+	color:white !important;
+}
 .theme-dark .topic-TCb_qw {
     color: #ffffff;
 }
