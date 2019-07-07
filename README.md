@@ -7,7 +7,7 @@ For more security: Enter a password for your server, and add an optional passwor
 Disable vapor mode by right clicking icon > options > uncheck
 
 <h3> Updates </h3>
-Update program by downloading source code from here or, on windows automatically download the source code by running the powershell file.
+Update program by downloading source code from here or automatically download the source code by running the powershell file on Windows. 
 
 <h3> Future updates:</h3>
 <ul> 
