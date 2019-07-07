@@ -262,7 +262,7 @@ var vaporStyle = `
 :root { 
 	--light: rgba(0, 0, 0, .0); 		/* Overall brightness. 1= black, 0 = transparent */
 	--userlight:rgba(0, 0, 0, 0.2) ;		/* Brightness for the userpopouts */
-	--homeIcon: url('https://i.imgur.com/CqAFpyP.jpg') ;
+	--homeIcon: url('') ;
 
 
 	--mc: rgba(44, 104, 96, 0.8);		/* Main colour. Larger items, backgrounds. */
@@ -272,7 +272,7 @@ var vaporStyle = `
 	--round: 50%;                          /* Overall Icon roundness */
 	
 	--font: Consolas,Liberation Mono,Menlo,Courier,monospace; /* Discord default - Whitney,Helvetica Neue,Helvetica,Arial,sans-serif  */
-	--fontSize: 14px;
+	--fontSize: 13px;
 	--textColour: #fff;
 
 	--block: none;                        /* Show/Hide blocked msgs */
@@ -293,7 +293,7 @@ var vaporStyle = `
 #app-mount .wrapper-1Rf91z , .membersWrap-2h-GB4 {
 background-color: #1a1a1d !important;
 }
-
+ 
 
 
 #app-mount .channels-Ie2l6A .name-3_Dsmg {
@@ -306,6 +306,14 @@ background-color: #1a1a1d !important;
 	max-width:500px;
 	margin-top:20px;
 	margin-bottom:20px;
+}
+
+.widermessage {
+	max-width:800px;
+}
+
+.evenwidermessage {
+	max-width:90%;
 }
 
 .containsImage {
@@ -428,7 +436,7 @@ document.addEventListener('keydown', function(event){
 		 
 	 if (event.key === stopkey) {
 		lastKeyWasStopKey = true;  
-		send = true;
+		send = true; 
 		var tmp = "";
 		var str = stopkey;
 		var textToEncrypt = textareaarray[0].value;
@@ -509,9 +517,17 @@ function decryptMessages() {
 			parentcontainer.className += " encryptedMessageContainer";
 			if(containsImage) {
 				parentcontainer.className += " containsImage";
-				
+			}
+			cleanText = decrypted.replace(/<\/?[^>]+(>|$)/g, "");
+
+			if(cleanText.length > 80) {
+				parentcontainer.className += " widermessage";
 			}
 
+
+			if(cleanText.length > 200) {
+				parentcontainer.className += " evenwidermessage";
+			}
 			//encryptedmessages[i].style.color = "white";
 			//encryptedmessages[i].style.fontWeight = "600";
 			//containers[i].border = "1px solid white";
@@ -540,6 +556,8 @@ counter = (counter+1) % 1000000;
 
 
 setPassphrase(); // (and decrypt)
+
+
 
 
 if (counter % 1000 == 0) { //learn emojis
