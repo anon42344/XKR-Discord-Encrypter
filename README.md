@@ -9,8 +9,6 @@ Disable vapor mode by right clicking icon > options > uncheck
 <h3> Updates </h3>
 Update program by downloading source code from here or, on windows automatically download the source code by running the powershell file.
 
-Part of the <a href="https://kryptokrona.se"> kryptokrona project </a>.
-
 <h3> Future updates:</h3>
 <ul> 
 <li>Automatic updates.</li>
@@ -22,3 +20,5 @@ Part of the <a href="https://kryptokrona.se"> kryptokrona project </a>.
 </ul>
 
 Disclaimer: This is work in progress. Security will improve. More functionality will be added. You are responsible for how you use this tool.
+
+Part of the <a href="https://kryptokrona.se"> kryptokrona project </a>.
