@@ -324,16 +324,27 @@ background-color: #ffffff00;
 `
 
 
+var defaultStyle = `
+
+.encryptedMessageContainer {
+	overflow: hidden;
+    background-color: #2f3136;
+    border-left: 1px solid #484c52;
+}
+
+`
 function vaporWaveMode() {
 	chrome.storage.local.get(null,function (obj){
 		var mydata = obj;
 		if(obj["vapormode"] != undefined) {
-			if(obj["vapormode"] == "true") {
 				var styleSheet = document.createElement("style");
 				styleSheet.type = "text/css";
+			if(obj["vapormode"] == "true") {
 				styleSheet.innerText = vaporStyle;
-				document.head.appendChild(styleSheet);
+			} else {
+				styleSheet.innerText = defaultStyle;
 			}
+				document.head.appendChild(styleSheet);
 		}
 		
 	});
@@ -342,6 +353,8 @@ function vaporWaveMode() {
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
 
  vaporWaveMode();
+ 
+ 
   
 var passphrase ="";
 var stopkey = "§"; 
