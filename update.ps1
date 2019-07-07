@@ -18,6 +18,3 @@ del master.zip
 Move-Item -Path ".\XKR-Discord-Encrypter-master\xkr_discord_encrypter" -Destination "."
 
 del XKR-Discord-Encrypter-master -R
-
-
-pause
