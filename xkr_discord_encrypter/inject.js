@@ -297,6 +297,8 @@ background-color: #1a1a1d !important;
  
 
 */
+
+
 #app-mount .channels-Ie2l6A .name-3_Dsmg {
     color: #fff;
 }
@@ -305,7 +307,7 @@ background-color: #1a1a1d !important;
 	    text-shadow: none !important;
 }
 
-#app-mount  .username-_4ZSMR {
+#app-mount  .username-_4ZSMR, .dividerContent-2L12VI {
 	color:white !important;
 }
 .theme-dark .topic-TCb_qw {
