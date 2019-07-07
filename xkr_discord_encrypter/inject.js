@@ -317,6 +317,12 @@ background-color: #1a1a1d !important;
 
 }
 
+
+.theme-dark .markup-2BOw-j a {
+    color: #f5ff00;
+    background-color: black;
+}
+
 .encryptedMessageContainer {
     background-color: black;
     border: 1px solid rgb(255, 0, 102);
