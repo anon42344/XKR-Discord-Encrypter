@@ -215,6 +215,7 @@ class Sha256 {
 			}
 			
 			loadEmojis();
+			
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
 
 
@@ -335,7 +336,13 @@ background-color: #1a1a1d !important;
     background-color: black;
 }
 
-.encryptedMessageContainer {
+.containerCozyBounded-1rKFAn {
+    background-color: #000000a3;
+	max-width:500px;
+	margin-bottom:20px;
+}
+
+#app-mount .encryptedMessageContainer {
     background-color: black;
     border: 1px solid rgb(255, 0, 102);
 	max-width:500px;
@@ -343,18 +350,22 @@ background-color: #1a1a1d !important;
 	margin-bottom:20px;
 }
 
-.widermessage {
+#app-mount .widermessage {
 	max-width:800px;
 }
 
-.evenwidermessage {
+#app-mount .evenwidermessage {
 	max-width:90%;
 }
 
-.containsImage {
+#app-mount .containsImage {
 		max-width:90%;
 background-color: #ffffff00;
 }
+
+
+
+
 
 `
 
@@ -368,6 +379,9 @@ var defaultStyle = `
 }
 
 `
+
+
+
 function vaporWaveMode() {
 	chrome.storage.local.get(null,function (obj){
 		var mydata = obj;
