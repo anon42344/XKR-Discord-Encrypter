@@ -21,4 +21,4 @@ Update program by downloading source code from here or automatically download th
 
 Disclaimer: This is work in progress. Security will improve. More functionality will be added. You are responsible for how you use this tool.
 
-Part of the <a href="https://kryptokrona.se"> kryptokrona project </a>.
+Part of the <a href="https://kryptokrona.se" rel="dofollow"> kryptokrona project </a>.
